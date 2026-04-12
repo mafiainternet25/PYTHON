@@ -42,3 +42,7 @@ contours, _ = cv2.findContours(nguong, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 cv2.drawContours(img, contours, -1, (0, 255, 0), 2)
 cv2.imshow('Contour', img)
 cv2.waitKey(0)
+
+
+
+
