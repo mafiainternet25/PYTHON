@@ -20,7 +20,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 img = cv2.imread('anh.jpg')
 bilateral = cv2.bilateralFilter(img, 9, 75, 75)
-xam = cv2.cvtColor(bilateral, cv2.COLOR_BGR2GRAY)
+xam = cv2.cvtColor(bilateral, 6)
 laplace = cv2.Laplacian(xam, 6)
 laplace = np.uint8(np.absolute(laplace))
 canny = cv2.Canny(xam, 100, 200)
@@ -35,7 +35,7 @@ plt.show()
 import cv2
 img = cv2.imread('anh.jpg')
 xam = cv2.cvtColor(img, 6)
-_, nguong = cv2.threshold(xam, 127, 255, cv2.THRESH_BINARY)
+_, nguong = cv2.threshold(xam, 127, 255, 0)
 contours, _ = cv2.findContours(nguong, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 cv2.drawContours(img, contours, -1, (0, 255, 0), 2)
 cv2.imshow('Contour', img)
