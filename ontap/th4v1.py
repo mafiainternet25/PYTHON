@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-img = cv2.imread('anh.jpg')
+img = cv2.imread('data/quoc.jpg')
 gauss = cv2.GaussianBlur(img, (5,5), 0)
 xam = cv2.cvtColor(gauss, 6)
 def update(x):
@@ -18,7 +18,7 @@ cv2.waitKey(0)
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-img = cv2.imread('anh.jpg')
+img = cv2.imread('data/quoc.jpg')
 bilateral = cv2.bilateralFilter(img, 9, 75, 75)
 xam = cv2.cvtColor(bilateral, 6)
 laplace = cv2.Laplacian(xam, 6)
@@ -33,7 +33,7 @@ plt.show()
 
 
 import cv2
-img = cv2.imread('anh.jpg')
+img = cv2.imread('data/quoc.jpg')
 xam = cv2.cvtColor(img, 6)
 _, nguong = cv2.threshold(xam, 127, 255, 0)
 contours, _ = cv2.findContours(nguong, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
