@@ -1,3 +1,4 @@
+#bai1:
 import cv2
 import numpy as np
 img = cv2.imread('data/quoc.jpg')
@@ -15,6 +16,7 @@ cv2.waitKey(0)
 
 
 
+#bai2:
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,7 +33,7 @@ plt.show()
 
 
 
-
+#bai3:
 import cv2
 img = cv2.imread('data/quoc.jpg')
 xam = cv2.cvtColor(img, 6)
