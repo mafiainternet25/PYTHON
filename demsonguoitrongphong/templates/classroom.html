@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<form class="container border border-dark rounded my-5 p-5" method="post" action="{{ url_for('classroom')  }}">
+  <h1 class="text-center">Create Classroom</h1>
+  <div class="mb-3 mt-3">
+    <label for="ip" class="form-label">Enter IP Address And PORT:</label>
+    <input type="text" class="form-control" id="ip" placeholder="Enter IP Address And PORT" name="ip">
+  </div>
+  <button type="submit" class="btn btn-dark" value="submit" id="btn1">Create</button>
+</form>
+
+<div class="container border border-dark rounded my-5 p-5 text-center" id="todocont">
+  <h1 class="mt-5">Data</h1>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>IP Address And PORT</th>
+        <th>Number Of People In Room</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ ip_address }}</td>
+        <td id="count">0</td>
+      </tr>
+    </tbody>
+  </table>
+  <h1 class="mt-5">{{ var2 }}</h1>
+  {% if ip_address %}
+  <img class="mt-3 rounded" src="{{ url_for('video_feed', ip=ip_address)}}" id="videoFeed" alt="cctvfotage" width="50%">
+  {% endif %}
+</div>
+
+<script>
+  function updatecount() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById('count').innerHTML = this.responseText;
+      }
+    }
+    ;
+    xhttp.open('GET', '/count', true);
+    xhttp.send()
+  }
+  setInterval(updatecount, 500)
+</script>
+
+{% endblock body %}
