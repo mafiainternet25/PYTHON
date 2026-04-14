@@ -2,13 +2,12 @@
 import cv2
 anh = cv2.imread('data/quoc.jpg')
 anhxam = cv2.cvtColor(anh,6)
-_, otsu = cv2.threshold(anhxam,0,255,0+8)
-canny = cv2.Canny(anh,50,150)
+_, otsu = cv2.threshold(anhxam,1,255,0+8)
+canny = cv2.Canny(anh,1,255)
 cv2.imshow('otsu',otsu)
 cv2.imshow('canny',canny)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
-
 
 
 #cau2
@@ -29,16 +28,15 @@ cv2.destroyAllWindows()
 import cv2
 import numpy as np
 video = cv2.VideoCapture('data/quoc.mp4')
-print('rong',video.get(3))
-print('cao',video.get(4))
-print('fps',video.get(5))
+print('rong:',video.get(3))
+print('cao:',video.get(4))
+print('fps:',video.get(5))
 while True:
     doc,khunghinh = video.read()
-    videoxam = cv2.cvtColor(khunghinh,6)
-    laplace = cv2.Laplacian(videoxam,6)
+    khunghinhxam = cv2.cvtColor(khunghinh,6)
+    laplace = cv2.Laplacian(khunghinhxam,6)
     laplace = np.uint8(np.absolute(laplace))
-    cv2.imshow('tach bien laplace',laplace)
+    cv2.imshow('ketqua',laplace)
     if cv2.waitKey(1)==27:break
 video.release()
 cv2.destroyAllWindows()
-
