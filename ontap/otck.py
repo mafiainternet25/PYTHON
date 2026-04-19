@@ -65,7 +65,8 @@ anh = cv2.imread('data/quoc.jpg')
 anhxam = cv2.cvtColor(anh,6)
 gauss = cv2.GaussianBlur(anhxam,(55,55),0)
 blur = cv2.blur(anhxam,(55,55))
-_,otsu = cv2.threshold(anhxam,1,255,0+8)
+_,otsu = cv2.threshold(blur,1,255,0+8)
+_,nhiphan = cv2.threshold(anhxam,127,255,0)
 adapt = cv2.adaptiveThreshold(anhxam,255,1,0,11,2)
 canny = cv2.Canny(anhxam,50,150)
 laplace = cv2.convertScaleAbs(cv2.Laplacian(anhxam,6))
@@ -77,6 +78,7 @@ plt.subplot(244), plt.imshow(otsu)
 plt.subplot(245), plt.imshow(adapt)
 plt.subplot(246), plt.imshow(canny)
 plt.subplot(247), plt.imshow(laplace)
+plt.subplot(248), plt.imshow(nhiphan)
 plt.show()
 
 
@@ -98,3 +100,38 @@ while True:
     if phiman == 27: break
 video.release()
 cv2.destroyAllWindows()
+
+
+
+
+#cau:5
+import cv2
+from networkx import center
+import numpy as np
+import matplotlib.pyplot as plt
+anh = cv2.imread('data/quoc.jpg')
+anhxam = cv2.cvtColor(anh, 6)
+cao, rong = anh.shape[:2]
+amban = 255 - anh
+gocxoay = int(input("goc xoay = "))
+tam = (rong//2, cao//2)
+matran1 = cv2.getRotationMatrix2D(tam, gocxoay, 1)
+anhxoay = cv2.warpAffine(anh, matran1, (rong, cao))
+pts1 = np.float32([[0,0],[rong,0],[0,cao],[rong,cao]])
+pts2 = np.float32([[50,50],[rong-50,50],[50,cao-50],[rong-50,cao-50]])
+matran2 = cv2.getPerspectiveTransform(pts1, pts2)
+anhphoicanh = cv2.warpPerspective(anh, matran2, (rong, cao))
+sobelx = cv2.convertScaleAbs(cv2.Sobel(anhxam, 6, 1, 0))
+sobely = cv2.convertScaleAbs(cv2.Sobel(anhxam, 6, 0, 1))
+sobel = cv2.addWeighted(sobelx, 0.5, sobely, 0.5, 0)
+contours, _ = cv2.findContours(sobel, 1, 2)
+anhcontour = anh.copy()
+cv2.drawContours(anhcontour, contours, -1, (0, 0, 255), 2)
+plt.gray()
+plt.subplot(231), plt.imshow(cv2.cvtColor(anh,4))
+plt.subplot(232), plt.imshow(cv2.cvtColor(amban,4))
+plt.subplot(233), plt.imshow(cv2.cvtColor(anhxoay,4))
+plt.subplot(234), plt.imshow(cv2.cvtColor(anhphoicanh,4))
+plt.subplot(235), plt.imshow(sobel)
+plt.subplot(236), plt.imshow(cv2.cvtColor(anhcontour,4))
+plt.show()
