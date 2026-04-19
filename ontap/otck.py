@@ -1,59 +1,59 @@
-# #cau:1
-# import cv2
-# anh = cv2.imread('data/quoc.jpg')
-# cao ,rong = anh.shape[:2]
-# print("cao:",cao)
-# print("rong:",rong)
-# x = int(input("x ="))
-# y = int(input("y ="))
-# print("mau tai diem (x,y):",anh[y,x])
-# hesotuongphan = int(input("he so tuong phan ="))
-# anhtuongphan = cv2.convertScaleAbs(anh,alpha=hesotuongphan,beta=0)
-# cv2.imwrite("anhtuongphan.jpg",anhtuongphan)
-# x1 = int(input("x1 ="))
-# x2 = int(input("x2 ="))
-# y1 = int(input("y1 ="))
-# y2 = int(input("y2 ="))
-# anhcat = anh[y1:y2,x1:x2]
-# cv2.imwrite("anhcat.jpg",anhcat)
+#cau:1
+import cv2
+anh = cv2.imread('data/quoc.jpg')
+cao ,rong = anh.shape[:2]
+print("cao:",cao)
+print("rong:",rong)
+x = int(input("x ="))
+y = int(input("y ="))
+print("mau tai diem (x,y):",anh[y,x])
+hesotuongphan = int(input("he so tuong phan ="))
+anhtuongphan = cv2.convertScaleAbs(anh,alpha=hesotuongphan,beta=0)
+cv2.imwrite("anhtuongphan.jpg",anhtuongphan)
+x1 = int(input("x1 ="))
+x2 = int(input("x2 ="))
+y1 = int(input("y1 ="))
+y2 = int(input("y2 ="))
+anhcat = anh[y1:y2,x1:x2]
+cv2.imwrite("anhcat.jpg",anhcat)
 
 
 
 
-# #cau2ab
-# import cv2
-# anh = cv2.imread('data/quoc.jpg')
-# def ham(x): pass
-# cv2.namedWindow('boloc')
-# cv2.createTrackbar('kichthuoc','boloc',15,51,ham)
-# while True:
-#     giatri = cv2.getTrackbarPos('kichthuoc','boloc')
-#     anhmo = cv2.blur(anh,(giatri,giatri),0)
-#     cv2.imshow('boloc',anhmo)
-#     if cv2.waitKey(1) == 27: break
-# cv2.destroyAllWindows()
+#cau2ab
+import cv2
+anh = cv2.imread('data/quoc.jpg')
+def ham(x): pass
+cv2.namedWindow('boloc')
+cv2.createTrackbar('kichthuoc','boloc',15,51,ham)
+while True:
+    giatri = cv2.getTrackbarPos('kichthuoc','boloc')
+    anhmo = cv2.blur(anh,(giatri,giatri),0)
+    cv2.imshow('boloc',anhmo)
+    if cv2.waitKey(1) == 27: break
+cv2.destroyAllWindows()
 
 
 
 
-# #cau:2cd
-# import cv2
-# import numpy as np
-# anh = cv2.imread('data/quoc.jpg')
-# def ham(x): pass
-# cao , rong = anh.shape[:2]
-# cv2.namedWindow('dichchuyen')
-# cv2.createTrackbar('dx','dichchuyen',15,51,ham)
-# cv2.createTrackbar('dy','dichchuyen',15,51,ham)
+#cau:2cd
+import cv2
+import numpy as np
+anh = cv2.imread('data/quoc.jpg')
+def ham(x): pass
+cao , rong = anh.shape[:2]
+cv2.namedWindow('dichchuyen')
+cv2.createTrackbar('dx','dichchuyen',15,51,ham)
+cv2.createTrackbar('dy','dichchuyen',15,51,ham)
 
-# while True:
-#     dx = cv2.getTrackbarPos('dx','dichchuyen')
-#     dy = cv2.getTrackbarPos('dy','dichchuyen')
-#     matran = np.float32([[1,0,dx],[0,1,dy]])
-#     anhdichchuyen = cv2.warpAffine(anh,matran,(rong,cao))
-#     cv2.imshow('dichchuyen',anhdichchuyen)
-#     if cv2.waitKey(1) == 27: break
-# cv2.destroyAllWindows()
+while True:
+    dx = cv2.getTrackbarPos('dx','dichchuyen')
+    dy = cv2.getTrackbarPos('dy','dichchuyen')
+    matran = np.float32([[1,0,dx],[0,1,dy]])
+    anhdichchuyen = cv2.warpAffine(anh,matran,(rong,cao))
+    cv2.imshow('dichchuyen',anhdichchuyen)
+    if cv2.waitKey(1) == 27: break
+cv2.destroyAllWindows()
 
 
 
@@ -63,8 +63,8 @@ import cv2
 import matplotlib.pyplot as plt
 anh = cv2.imread('data/quoc.jpg')
 anhxam = cv2.cvtColor(anh,6)
-gauss = cv2.GaussianBlur(anhxam,(15,15),0)
-blur = cv2.blur(anhxam,(15,15))
+gauss = cv2.GaussianBlur(anhxam,(55,55),0)
+blur = cv2.blur(anhxam,(55,55))
 _,otsu = cv2.threshold(anhxam,1,255,0+8)
 adapt = cv2.adaptiveThreshold(anhxam,255,1,0,11,2)
 canny = cv2.Canny(anhxam,50,150)
@@ -82,19 +82,19 @@ plt.show()
 
 
 
-# #cau:4
-# import cv2
-# video = cv2.VideoCapture('data/quoc.mp4')
-# print('FPS:', video.get(5))
-# while True:
-#     docvideo, khunghinh = video.read()
-#     anhxam = cv2.cvtColor(khunghinh, 6)
-#     cv2.imshow('video xam', anhxam)
-#     phiman = cv2.waitKey(1)
-#     if phiman == ord('x'):
-#         anhlay = anhxam.copy()
-#         adaptive = cv2.adaptiveThreshold(anhlay,255,1,0,11,2)
-#         cv2.imshow('adaptive', adaptive)
-#     if phiman == 27: break
-# video.release()
-# cv2.destroyAllWindows()
+#cau:4
+import cv2
+video = cv2.VideoCapture('data/quoc.mp4')
+print('FPS:', video.get(5))
+while True:
+    docvideo, khunghinh = video.read()
+    anhxam = cv2.cvtColor(khunghinh, 6)
+    cv2.imshow('video xam', anhxam)
+    phiman = cv2.waitKey(1)
+    if phiman == ord('x'):
+        anhlay = anhxam.copy()
+        adaptive = cv2.adaptiveThreshold(anhlay,255,1,0,11,2)
+        cv2.imshow('adaptive', adaptive)
+    if phiman == 27: break
+video.release()
+cv2.destroyAllWindows()
