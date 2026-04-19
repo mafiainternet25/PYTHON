@@ -3,7 +3,7 @@
    Đọc, hiển thị và lưu ảnh: Sử dụng cv2.imread(filename, flag) (thêm 0 để đọc ảnh xám), cv2.imshow(), cv2.imwrite(),.
    Thao tác với Video: Dùng cap = cv2.VideoCapture() (mở file hoặc dùng số 0 cho webcam), cap.read() để lấy frame và cv2.VideoWriter() để ghi video,. Bạn có thể lấy thông số của video như số frame trên giây bằng cap.get(5) và tổng số khung hình bằng cap.get(7).
    Các thuộc tính của ảnh: Lấy kích thước bằng img.shape (trả về height, width, channels), tổng điểm ảnh img.size, và thao tác với giá trị pixel bằng img[y, x].
-   Chuyển đổi không gian màu: Hàm cv2.cvtColor(src, code). Phổ biến là cv2.COLOR_BGR2GRAY (sang ảnh xám) hay cv2.COLOR_BGR2HSV.
+   Chuyển đổi không gian màu: Hàm cv2.cvtColor(src, code). Phổ biến là cv2.COLOR_BGR2GRAY (sang ảnh xám) .
    Cắt ảnh (Crop): Không có hàm cắt riêng, ta lấy trực tiếp một phần của ma trận numpy: crop = img[y1:y2, x1:x2].
 
 2. Xử lý điểm ảnh và Biến đổi hình học (Chương 2)
