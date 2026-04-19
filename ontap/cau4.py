@@ -16,6 +16,6 @@ while True:
         blur = cv2.blur(khunghinhxam,(5,5))
         adapt = cv2.adaptiveThreshold(blur,255,1,0,15,2)
         cv2.imshow('adapt',adapt)
-    if cv2.waitKey(1) == 27:break
+    if cv2.waitKey(1) == ord('f'):break
 video.release()
 cv2.destroyAllWindows()
