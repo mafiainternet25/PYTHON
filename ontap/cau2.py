@@ -16,7 +16,6 @@ cv2.namedWindow('anh')
 cv2.createTrackbar('k','anh',10,50,ham)
 while True:
     k = cv2.getTrackbarPos('k','anh')
-    if k % 2 == 0 :k += 1
     anhloc = cv2.blur(anh,(k,k))
     cv2.imshow('anh',anhloc)
     if cv2.waitKey(1) == 27:break
